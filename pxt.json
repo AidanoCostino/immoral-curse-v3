@@ -1,15 +1,18 @@
 {
-    "name": "Immoral Curse v3",
+    "name": "Immortal Curse v3",
     "description": "",
     "dependencies": {
         "device": "*",
         "tilemaps": "github:microsoft/pxt-tilemaps#v1.12.0",
         "arcade-minimap": "github:microsoft/arcade-minimap#v0.6.1",
         "pxt-status-bar": "github:jwunderl/pxt-status-bar#v0.4.1",
-        "arcade-character-animations": "github:microsoft/arcade-character-animations#v0.0.2",
         "pxt-arcade-image-transform": "github:robo-technical-group/pxt-arcade-image-transform#v1.0.8",
         "pxt-scaling": "github:jwunderl/pxt-scaling#v0.1.0",
-        "arcade-tilemap-a-star": "github:jwunderl/arcade-tilemap-a-star#v0.3.5"
+        "arcade-tilemap-a-star": "github:jwunderl/arcade-tilemap-a-star#v0.3.5",
+        "animation": "*",
+        "character-animations": "github:riknoll/character-animations#v0.3.2",
+        "Inventory": "github:UnsignedArduino/Inventory#v1.1.0",
+        "pxt-lantern": "github:felixtsu/pxt-lantern#v0.2.0"
     },
     "files": [
         "main.blocks",
@@ -17,7 +20,9 @@
         "README.md",
         "assets.json",
         "tilemap.g.jres",
-        "tilemap.g.ts"
+        "tilemap.g.ts",
+        "images.g.jres",
+        "images.g.ts"
     ],
     "testFiles": [
         "test.ts"

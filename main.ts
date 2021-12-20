@@ -25,6 +25,7 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.doorLockedNorth, function
     tiles.placeOnTile(Key, tiles.getTileLocation(1, 1))
 })
 function PickUpKey () {
+    tiles.setTileAt(tiles.getTileLocation(17, 0), sprites.dungeon.doorOpenNorth)
     KeyInv = Inventory.create_item("Key", img`
         . . . . . . . . . . . . . . . . 
         . . . . f f f f f f . . . . . . 
@@ -43,22 +44,20 @@ function PickUpKey () {
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         `)
+    ToolbarSlot4 = KeyInv
     if (KeyCount < 1) {
-        if (rockCount > 0) {
-            toolbar.set_items([
-            Torch,
-            Gold_Coin,
-            RockInv,
-            KeyInv
-            ])
-        } else {
-            toolbar.set_items([Torch, Gold_Coin, KeyInv])
-        }
+        toolbar.set_items([
+        toolbarSlot_1,
+        ToolbarSlot2,
+        ToolbarSlot3,
+        ToolbarSlot4,
+        ToolbarSlot5
+        ])
     }
     KeyCount += 1
 }
 controller.player2.onButtonEvent(ControllerButton.B, ControllerButtonEvent.Pressed, function () {
-    tiles.placeOnTile(Character, tiles.getTileLocation(17, 1))
+    tiles.placeOnTile(Character, tiles.getTileLocation(17, 0))
 })
 function toolbar_follow () {
     if (Character.x > 80) {
@@ -91,20 +90,20 @@ function toolbar_follow () {
 }
 function player_creation () {
     Character = sprites.create(img`
-        . . . . . . . . . . . . . . 
-        . . . . . 6 9 9 6 . . . . . 
-        . . . . 6 9 9 9 9 6 . . . . 
-        . . . . 9 4 4 4 4 9 . . . . 
-        . . . d 4 4 4 4 d 4 d . . . 
-        . . . d 4 4 d d d 4 d . . . 
-        . . . . 4 d d d d 4 . . . . 
-        . . . . 6 6 6 6 6 6 . . . . 
-        . . . 6 9 6 9 9 6 9 6 . . . 
-        . . . 6 9 b e e b 9 6 . . . 
-        . . . d d e 9 9 e d d . . . 
-        . . . . . b . . b . . . . . 
-        . . . . . 2 . . 2 . . . . . 
-        . . . . . . . . . . . . . . 
+        . . . . . f f f f . . . . . 
+        . . . . f 6 9 9 6 f . . . . 
+        . . . f 6 9 9 9 9 6 f . . . 
+        . . . f 9 4 4 4 4 9 f . . . 
+        . . f d 4 4 4 4 d 4 d f . . 
+        . . f d 4 4 d d d 4 d f . . 
+        . . . f 4 d d d d 4 f . . . 
+        . . . f 6 6 6 6 6 6 f . . . 
+        . . f 6 9 6 9 9 6 9 6 f . . 
+        . . f 6 9 b e e b 9 6 f . . 
+        . . f d d e 9 9 e d d f . . 
+        . . . f f b c c b f f . . . 
+        . . . . f 8 8 8 8 f . . . . 
+        . . . . . f f f f . . . . . 
         `, SpriteKind.Player)
     scene.cameraFollowSprite(Character)
     tiles.placeOnTile(Character, tiles.getTileLocation(0, 15))
@@ -113,8 +112,10 @@ function player_creation () {
     pause(2500)
     controller.moveSprite(Character, 100, 100)
     Torch = Inventory.create_item("Torch", assets.image`Torch`)
+    toolbarSlot_1 = Torch
     Gold_Coin = Inventory.create_item("Gold Coin", assets.image`myImage`)
-    toolbar = Inventory.create_toolbar([Torch, Gold_Coin], 5)
+    ToolbarSlot2 = Gold_Coin
+    toolbar = Inventory.create_toolbar([toolbarSlot_1, ToolbarSlot2], 5)
     toolbar.set_color(ToolbarColorAttribute.BoxOutline, 15)
     toolbar.setPosition(80, 290)
     toolbar.setFlag(SpriteFlag.Ghost, true)
@@ -154,18 +155,16 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Rock, function (sprite, otherSpr
     if (rockCount == 1) {
         sprite.sayText("I wonder if these rocks could come in handy later.", 5000, true)
         RockInv = Inventory.create_item("Rock", assets.image`Rocks`)
+        ToolbarSlot3 = RockInv
     }
     if (rockCount >= 1) {
-        if (KeyCount > 0) {
-            toolbar.set_items([
-            Torch,
-            Gold_Coin,
-            KeyInv,
-            RockInv
-            ])
-        } else {
-            toolbar.set_items([Torch, Gold_Coin, RockInv])
-        }
+        toolbar.set_items([
+        toolbarSlot_1,
+        ToolbarSlot2,
+        ToolbarSlot3,
+        ToolbarSlot4,
+        ToolbarSlot5
+        ])
     }
 })
 function Make_Variables () {
@@ -173,20 +172,53 @@ function Make_Variables () {
     rockCount = 0
     KeyCount = 0
 }
+function ToolbarItemCount () {
+    _null = Inventory.create_item("null", img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `)
+    ToolbarSlot3 = _null
+    ToolbarSlot4 = _null
+    ToolbarSlot5 = _null
+}
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.doorOpenNorth, function (sprite, location) {
+	
+})
+let _null: Inventory.Item = null
 let RoomNumber = 0
-let Character: Sprite = null
 let RockInv: Inventory.Item = null
+let rockCount = 0
 let Gold_Coin: Inventory.Item = null
 let Torch: Inventory.Item = null
+let Character: Sprite = null
+let ToolbarSlot5: Inventory.Item = null
+let ToolbarSlot3: Inventory.Item = null
+let ToolbarSlot2: Inventory.Item = null
+let toolbarSlot_1: Inventory.Item = null
 let toolbar: Inventory.Toolbar = null
-let rockCount = 0
 let KeyCount = 0
+let ToolbarSlot4: Inventory.Item = null
 let KeyInv: Inventory.Item = null
 let Key: Sprite = null
 tiles.setTilemap(tilemap`level4`)
 makeRocks()
 Make_Variables()
 player_creation()
+ToolbarItemCount()
 game.onUpdate(function () {
     toolbar_follow()
 })

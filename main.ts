@@ -3,29 +3,33 @@ namespace SpriteKind {
     export const Key = SpriteKind.create()
 }
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.doorLockedNorth, function (sprite, location) {
-    sprite.sayText("Do I need a Key?", 2000, true)
-    Key = sprites.create(img`
-        . . . . . . . . . . . . . . . . 
-        . . . . f f f f f f . . . . . . 
-        . . . f 5 5 5 5 d d f . . . . . 
-        . . f 5 5 4 4 4 4 5 d f . . . . 
-        . . f 5 5 . . . . 5 4 f . . . . 
-        . . . f 4 4 4 5 5 4 f . . . . . 
-        . . . . f f 5 5 f f . . . . . . 
-        . . . . . f 5 d f . . . . . . . 
-        . . . . . f 5 d f f . . . . . . 
-        . . . . . f 5 5 d d f . . . . . 
-        . . . . . f 5 5 4 f . . . . . . 
-        . . . . . f 5 5 5 d f . . . . . 
-        . . . . . f 5 4 f f . . . . . . 
-        . . . . . . f f . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        `, SpriteKind.Key)
-    tiles.placeOnTile(Key, tiles.getTileLocation(1, 1))
+    if (KeyCount > 0) {
+        KeyCount += -1
+        tiles.setTileAt(tiles.getTileLocation(17, 0), sprites.dungeon.doorOpenNorth)
+    } else {
+        sprite.sayText("Do I need a Key?", 2000, true)
+        Key = sprites.create(img`
+            . . . . . . . . . . . . . . . . 
+            . . . . f f f f f f . . . . . . 
+            . . . f 5 5 5 5 d d f . . . . . 
+            . . f 5 5 4 4 4 4 5 d f . . . . 
+            . . f 5 5 . . . . 5 4 f . . . . 
+            . . . f 4 4 4 5 5 4 f . . . . . 
+            . . . . f f 5 5 f f . . . . . . 
+            . . . . . f 5 d f . . . . . . . 
+            . . . . . f 5 d f f . . . . . . 
+            . . . . . f 5 5 d d f . . . . . 
+            . . . . . f 5 5 4 f . . . . . . 
+            . . . . . f 5 5 5 d f . . . . . 
+            . . . . . f 5 4 f f . . . . . . 
+            . . . . . . f f . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `, SpriteKind.Key)
+        tiles.placeOnTile(Key, tiles.getTileLocation(1, 1))
+    }
 })
 function PickUpKey () {
-    tiles.setTileAt(tiles.getTileLocation(17, 0), sprites.dungeon.doorOpenNorth)
     KeyInv = Inventory.create_item("Key", img`
         . . . . . . . . . . . . . . . . 
         . . . . f f f f f f . . . . . . 
@@ -89,22 +93,7 @@ function toolbar_follow () {
     }
 }
 function player_creation () {
-    Character = sprites.create(img`
-        . . . . . f f f f . . . . . 
-        . . . . f 6 9 9 6 f . . . . 
-        . . . f 6 9 9 9 9 6 f . . . 
-        . . . f 9 4 4 4 4 9 f . . . 
-        . . f d 4 4 4 4 d 4 d f . . 
-        . . f d 4 4 d d d 4 d f . . 
-        . . . f 4 d d d d 4 f . . . 
-        . . . f 6 6 6 6 6 6 f . . . 
-        . . f 6 9 6 9 9 6 9 6 f . . 
-        . . f 6 9 b e e b 9 6 f . . 
-        . . f d d e 9 9 e d d f . . 
-        . . . f f b c c b f f . . . 
-        . . . . f 8 8 8 8 f . . . . 
-        . . . . . f f f f . . . . . 
-        `, SpriteKind.Player)
+    Character = sprites.create(assets.image`Character`, SpriteKind.Player)
     scene.cameraFollowSprite(Character)
     tiles.placeOnTile(Character, tiles.getTileLocation(0, 15))
     Character.sayText("How did I end up here?", 5000, false)
@@ -145,9 +134,15 @@ function makeRocks () {
 controller.player2.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Pressed, function () {
     tiles.placeOnTile(Character, tiles.getTileLocation(1, 1))
 })
+controller.player2.onButtonEvent(ControllerButton.Down, ControllerButtonEvent.Pressed, function () {
+    tiles.placeOnTile(Character, tiles.getTileLocation(31, 9))
+})
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Key, function (sprite, otherSprite) {
-    otherSprite.destroy()
+    otherSprite.destroy(effects.disintegrate, 500)
     PickUpKey()
+})
+controller.player2.onButtonEvent(ControllerButton.Up, ControllerButtonEvent.Pressed, function () {
+    tiles.placeOnTile(Character, tiles.getTileLocation(26, 18))
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Rock, function (sprite, otherSprite) {
     rockCount += 1
@@ -196,7 +191,33 @@ function ToolbarItemCount () {
     ToolbarSlot5 = _null
 }
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.doorOpenNorth, function (sprite, location) {
-	
+    if (KeyCount > 0) {
+        sprite.sayText("I'll use my key.", 1000, true)
+        pause(1000)
+        tiles.setTileAt(tiles.getTileLocation(31, 9), sprites.dungeon.doorOpenEast)
+        KeyCount += -1
+    } else {
+        sprite.sayText("Do I need a Key?", 2000, true)
+        Key = sprites.create(img`
+            . . . . . . . . . . . . . . . . 
+            . . . . f f f f f f . . . . . . 
+            . . . f 5 5 5 5 d d f . . . . . 
+            . . f 5 5 4 4 4 4 5 d f . . . . 
+            . . f 5 5 . . . . 5 4 f . . . . 
+            . . . f 4 4 4 5 5 4 f . . . . . 
+            . . . . f f 5 5 f f . . . . . . 
+            . . . . . f 5 d f . . . . . . . 
+            . . . . . f 5 d f f . . . . . . 
+            . . . . . f 5 5 d d f . . . . . 
+            . . . . . f 5 5 4 f . . . . . . 
+            . . . . . f 5 5 5 d f . . . . . 
+            . . . . . f 5 4 f f . . . . . . 
+            . . . . . . f f . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `, SpriteKind.Key)
+        tiles.placeOnTile(Key, tiles.getTileLocation(26, 18))
+    }
 })
 let _null: Inventory.Item = null
 let RoomNumber = 0
@@ -210,10 +231,10 @@ let ToolbarSlot3: Inventory.Item = null
 let ToolbarSlot2: Inventory.Item = null
 let toolbarSlot_1: Inventory.Item = null
 let toolbar: Inventory.Toolbar = null
-let KeyCount = 0
 let ToolbarSlot4: Inventory.Item = null
 let KeyInv: Inventory.Item = null
 let Key: Sprite = null
+let KeyCount = 0
 tiles.setTilemap(tilemap`level4`)
 makeRocks()
 Make_Variables()

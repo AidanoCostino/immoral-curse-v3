@@ -14,6 +14,53 @@
         "mimeType": "image/x-mkcd-f4",
         "displayName": "Rocks"
     },
+    "image4": {
+        "data": "hwQKAA4AAAAAAP8A/w8AAADw3f+I/QAA8JZE5Ij/DwBvSURtZo74AJ9J1G3p+A8An0n0ben4DwBvSd1tZo74APCWROSI/w8AAP/d/4j9AAAAAP8A/w8AAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "Character"
+    },
+    "image5": {
+        "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAgAAAAAAACAkIiIAAAAAIEREIgIAAAAgUhFEAgAAAABSFUUCAAAAACJVJAIAAAAAICQiAAAAAAAAIgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "Fireball"
+    },
+    "image6": {
+        "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP///wAAAAAA////AAAAAP9E7u7/AAAA/0Tu7v8AAAD/RO7u/wAAAP9E7u7/AAAA/0Tu7v8AAAD/RO7u/wAAAAD///8AAAAAAP///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "Shield"
+    },
+    "image9": {
+        "data": "hwQKAA4AAAAAAP8A/w8AAADw3f+I/QAA8JZE5Ij/DwBvSURtZo74AJ9J1G3p+A8An0n0ben4DwBvSd1tZo74APCWRPT//w8AAP/d/+T+AAAAAP/w/w8AAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "Character0"
+    },
+    "image7": {
+        "data": "hwQLAA4AAAAAAP8A/w8AAADw3f+I/QAA8JZE5Ij/DwBvSURtZo74AJ9J1G3p+A8An0n0bf//DwBvSd395P74APCWRPTk/g8AAP/d/+T+AAAAAP8A/w8AAAAAAAAAAAAA",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "CharacterWithShied"
+    },
+    "image8": {
+        "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAP8AAAAA8A/w7g8AAACf+e/uDwAAAPCZ7v4AAAAA8JHpDwAAAAAfEZkPAAAA8BEdkfkAAAAf0RH/+QAA8BER8QAPAAAfEREPAAAA8BEd8QAAAADw0REPAAAAAPAR8QAAAAAAAP8PAAAAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "Sword"
+    },
+    "image11": {
+        "data": "hwQNAA4AAAAAAAAAAPAAAAAAAAAAHw8AAAAAAPARDwAAAP8An/EAAADw3f+eDwAA8JZE5Ij/DwBvSURtZo74AJ9J1G3p+A8An0n0ben4DwBvSd1tZo74APCWRPT//w8AAP/d/+T+AAAAAP/w/w8AAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "Character1"
+    },
+    "image10": {
+        "data": "hwQNAA4AAAAAAAAAAPAAAAAAAAAAHw8AAAAAAPARDwAAAP8An/EAAADw3f+eDwAA8JZE5Ij/DwBvSURtZo74AJ9J1G3p+A8An0n0bf//DwBvSd395P74APCWRPTk/g8AAP/d/+T+AAAAAP8A/w8AAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "CharacterWithShied0"
+    },
+    "anim1": {
+        "namespace": "myAnimations",
+        "id": "anim1",
+        "mimeType": "application/mkcd-animation",
+        "data": "MzIwMDBkMDAwZTAwMDQwMDAwMDAwMGZmZmYwMDAwMDAwMDZmOTlmNjAwMDAwMDYwOTk5OWY2MDAwMGYwNDk0NDk0MGYwMGYwNGQ0NGQ0ZDQwZjAwZGY0NGZkNGRmZDAwMDA0ZmRkZGRmNDAwMDBmMDZlNjZmNmZmMDBmMDhlOTY2OTRmMGZmMDk5NjhlZWY2ZmVmMDExZmY4ZWU4ZWZmZjExMGY4ZmZmZjgwZmYwMGZmMGY4OGYwZjAwMDAwMGYwMDAwZjAwMDAwMDAwZmZmZjAwMDAwMDAwNmY5OWY2MDAwMDAwNjA5OTk5ZjYwMDAwZjA0OTQ0OTQwZjAwZjA0ZDQ0ZDRkNDBmMDBkZjQ0ZmQ0ZGZkMDAwMDRmZGRkZGY0MDAwMGYwNmU2NmY2ZmYwMGYwOGU5NjY5NGYwZmYwOTk2OGVlZjZmZTAwMWZmMThlZThlZjBmZjBmMThmZmZmODBmMDAxZmZmZjg4ZjBmMDAwMDBmZjAwMDBmMDAwMDAwMDBmZmZmMDAwMDAwMDA2Zjk5ZjYwMDAwMDA2MDk5OTlmNjAwMDBmMDQ5NDQ5NDBmMDBmMDRkNDRkNGQ0MGYwMGRmNDRmZDRkZmQwMDAwNGZkZGRkZjQwMDAwZjA2ZTY2ZjZmZjAwZjA4ZTk2Njk0ZjBmMDA5ZjY5ZWVmNmZlMDBmMDExOGVlOGVmMGYwMDFmODFmZmY4MGYwMDAwMWZmODhmMGYwMDAwMDBmZjAwMGYwMDAwMDAwMGZmZmYwMDAwMDAwMDZmOTlmNjAwMDAwMDYwOTk5OWY2MDAwMGYwNDk0NDk0MGYwMGYwNGQ0NGQ0ZDQwZjAwZGY0NGZkNGRmZDAwMDA0ZmRkZGRmNDAwMDBmMDZlNjZmNmZmMDBmMDllOTk2NjRmMGYwMGYwMTFlMWY2ZmUwMDAwZmYxMWUxZWYwZjAwMDA4ZmZmZjgwZjAwMDAwMGZmOGYwZjAwMDAwMGYwMDAwZjAw",
+        "displayName": "myAnim"
+    },
     "*": {
         "mimeType": "image/x-mkcd-f4",
         "dataEncoding": "base64",
